@@ -1,0 +1,15 @@
+<div class="mx-auto p-16">
+  <h1 class="text-blue-600 font-bold text-5xl">Welcome to Amias Market</h1>
+  <p class="text-3xl mt-5">Best place for buying and selling Products</p>
+  
+  <% if !user_signed_in? %>
+    <div class="mt-5">
+      <%= link_to 'Log In', new_user_session_path, class:"py-2 px-3 rounded-full bg-blue-500 text-white hover:bg-blue-300" %>
+    </div>
+
+    <div class="mt-5">
+      <%= link_to 'Sign Up', new_user_registration_path, class:"py-2 px-3 rounded-full bg-red-500 text-white hover:bg-red-300" %>
+    </div>
+  <% end %>
+  
+</div>
