@@ -33,7 +33,7 @@
 
         <% if user_signed_in? %>
           <div>
-            <%= link_to 'Profile', edit_profile_path %>
+            <%= link_to current_user.username, edit_profile_path %>
           </div>
 
           <div class="ml-5">

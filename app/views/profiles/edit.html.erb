@@ -1,4 +1,16 @@
-<div>
-  <h1 class="font-bold text-4xl">Profiles#edit</h1>
-  <p>Find me in app/views/profiles/edit.html.erb</p>
+<div class="w-[600px] mx-auto">
+  <%= form_with model: @profile, url: profile_path do |form| %>
+    <div>
+      <%= form.text_field :username, class:"border border-gray-400 px-3 py-2" %>
+    </div>
+
+    <div class="mt-5">
+      <%= form.email_field :email, class:"border border-gray-400 px-3 py-2" %>
+    </div>
+
+    <div class="mt-5 ">
+      <%= form.submit "Save", class:"px-3 py-2 rounded-full bg-blue-500 text-white "%>
+    </div>
+  <% end %>
+  
 </div>
