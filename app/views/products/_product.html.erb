@@ -22,5 +22,11 @@
   <p class="my-5">
     <%= product.category %>
   </p>
+
+  <p class="mt-5">
+    <% if current_user != product.user %>
+      by <%= product.user.username %>
+    <% end %> 
+  </p>
   
 </div>
