@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :products
-  get "profiles/edit"
+  resources :products do
+    collection do
+      get :my_products
+    end
+  end
   resource :profile, only: [:edit, :update]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
