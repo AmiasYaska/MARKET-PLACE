@@ -23,6 +23,9 @@
           <div class="m-3 items-center">
             <%= link_to product.price, product, class:"text-lg" %>
           </div>
+          <div class="m-3 items-center">
+            <%= link_to product.user.username, product, class:"text-lg" %>
+          </div>
         </div>
       <% end %>
     <% else %>
