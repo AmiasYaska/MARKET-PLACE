@@ -1,4 +1,15 @@
-<div id="<%= dom_id product %>">
+<div id="<%= dom_id product %>" class=" items-center ">
+
+  <p class="my-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+      <% product.images.each do |image| %>
+        <div class="rounded-lg border overflow-hidden">
+          <%= link_to image_tag(url_for(image), width: 300, height: 300, class: "rounded-lg shadow-md"), image, target: "_blank" %>
+        </div>
+      <% end %>
+    </div>
+  </p>
+
   <p class="my-5">
     <%= product.title %>
   </p>
@@ -11,10 +22,5 @@
   <p class="my-5">
     <%= product.category %>
   </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Images:</strong>
-    <% product.images.each do |image| %>
-      <div><%= link_to image.filename, image %></div>
-    <% end %>
-  </p>
+  
 </div>
