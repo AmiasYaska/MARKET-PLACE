@@ -3,4 +3,7 @@ class Product < ApplicationRecord
 
   belongs_to :user
 
+  has_many :purchases
+  has_many :buyers, through: :purchases, source: :user
+
 end
