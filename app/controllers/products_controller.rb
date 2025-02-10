@@ -57,7 +57,7 @@ class ProductsController < ApplicationController
     @product.soft_delete
 
     respond_to do |format|
-      format.html { redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed." }
+      format.html { redirect_to products_path, status: :see_other, notice: "Product was successfully deleted!." }
       format.json { head :no_content }
     end
   end

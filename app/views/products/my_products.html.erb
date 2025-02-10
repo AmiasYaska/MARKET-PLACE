@@ -6,23 +6,31 @@
 
         <div id="products" class="grid grid-cols-2 md:grid-cols-4 gap-5">
             <% if @products.any? %>
-            <% @products.each do |product| %>
-                <div class="border rounded-lg">
-                <div class="m-3">
-                    <%= link_to product.title, product, class:"text-xl " %>
-                </div>
-                <% if product.images.any? %>
-                    <%= link_to product do %>
-                    <%= image_tag product.images.first, class:"w-full h-48 rounded-md" %>
+                <% @products.each do |product| %>
+                    
+                    <% if product.active? %>
+                        <div class="flex flex-col p-4 border rounded-lg">
+                            <div class="m-3">
+                                <%= link_to product.title, product, class:"text-xl " %>
+                            </div>
+                            <% if product.images.any? %>
+                                <%= link_to product do %>
+                                <%= image_tag product.images.first, class:"w-full h-48 rounded-md" %>
+                                <% end %>
+                            <% end %>
+
+                            <div class="flex justify-end items-center mt-3">
+                                <div class="text-gray-900">
+                                    <%= link_to number_to_currency(product.price), class:"text-lg" %>
+                                </div>
+                            </div>
+                            
+                        </div>
                     <% end %>
                 <% end %>
-                <div class="m-3 items-center">
-                    <%= link_to product.price, product, class:"text-lg" %>
-                </div>
-                </div>
-            <% end %>
+                
             <% else %>
-            <p class="text-center my-10">No products found.</p>
+                <p class="text-center my-10">No products found.</p>
             <% end %>
         </div>
 

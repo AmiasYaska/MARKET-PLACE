@@ -35,7 +35,6 @@
           <% unless product.active? %>
             <span class="text-red-500">(No longer available)</span>
           <% end %>
-          
           <%# Purchase Button%>
             <% if user_signed_in?%>
               <% if current_user != product.user %> 
