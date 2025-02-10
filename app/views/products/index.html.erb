@@ -22,19 +22,17 @@
             <%= link_to product.user.username, product, class:"text-lg" %>
           </div>
           <%# Purchase Button%>
-          <div>
             <% if user_signed_in?%>
               <% if current_user != product.user %> 
                 <% if current_user.purchased?(product) %>
                   <span class="text-green-600 font-medium">Purchased ✓</span>
-                  <% else %>
-                    <div class="mt-3 items-center">
-                      <%= button_to "Buy", purchases_path(product_id: product.id), method: :post, data: {confirm: "Proceed to payment"}, class:"px-2 py-1 bg-blue-500 rounded-full text-white" %>
-                    </div>
+                <% else %>
+                  <div class="mt-3 items-center">
+                    <%= button_to "Buy", purchases_path(product_id: product.id), method: :post, data: {confirm: "Proceed to payment"}, class:"px-2 py-1 bg-blue-500 rounded-full text-white" %>
+                  </div>
                 <% end %>
               <% end %>
             <% end %>
-          </div>
         </div>
       <% end %>
     <% else %>
