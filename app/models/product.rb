@@ -6,4 +6,15 @@ class Product < ApplicationRecord
   has_many :purchases
   has_many :buyers, through: :purchases, source: :user
 
+  scope :active, -> { where(deleted_at: nil)}
+  scope :with_deleted, -> { unscope(where: :deleted_at)}
+
+  def soft_delete
+    update(deleted_at: Time.current)
+  end
+
+  def active?
+    deleted_at.nil?
+  end
+
 end
