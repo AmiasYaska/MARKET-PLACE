@@ -9,7 +9,7 @@ class PurchasesController < ApplicationController
         return
       end
 
-      if current_user.purchased?(product)
+      if current_user.purchased?(@product)
         redirect_to products_path, alert: "Already purchased"
         return
       end
