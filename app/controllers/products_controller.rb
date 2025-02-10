@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.active.includes(:user, :purchases).all
     if user_signed_in?
-    @products = @products.reject{ |product| current_user.purchased?(product) || product.user == current_user }   
+    @products = @products.reject{ |product| product.user == current_user }   
     end
   end
 
