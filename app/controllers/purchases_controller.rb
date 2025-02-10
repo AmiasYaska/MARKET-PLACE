@@ -10,16 +10,16 @@ class PurchasesController < ApplicationController
       end
 
       if current_user.purchased?(@product)
-        redirect_to products_path, alert: "Already purchased"
+        redirect_to @product, alert: "Already purchased"
         return
       end
   
       @purchase = current_user.purchases.create(product: @product)
       
       if @purchase.persisted?
-        redirect_to products_path, notice: "Purchase successful!"
+        redirect_to @product, notice: "Purchase successful!"
       else
-        redirect_to products_path, alert: "Purchase failed."
+        redirect_to @product, alert: "Purchase failed."
       end
     end
   end
