@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_many :products
   has_many :purchases 
   has_many :purchased_products, through: :purchases, source: :product
+
+  def purchased?(product)
+    purchased_products.include?(product)
+  end
 end

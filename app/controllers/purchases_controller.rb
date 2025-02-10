@@ -2,10 +2,15 @@ class PurchasesController < ApplicationController
     before_action :authenticate_user!
   
     def create
-      @product = Product.find(params[:product_id])
+      @product = Product.includes(:user).find(params[:product_id])
       
       if @product.user == current_user
         redirect_to products_path, alert: "You cannot purchase your own product."
+        return
+      end
+
+      if current_user.purchased?(product)
+        redirect_to products_path, alert: "Already purchased"
         return
       end
   
