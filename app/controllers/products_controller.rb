@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.includes(:user, :purchases).all
+    @products = Product.active.includes(:user, :purchases).all
   end
 
   def my_products
@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
-    @product.destroy!
+    @product.soft_delete
 
     respond_to do |format|
       format.html { redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed." }
