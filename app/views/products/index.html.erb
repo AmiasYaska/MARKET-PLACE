@@ -6,7 +6,10 @@
   <div id="products" class="grid grid-cols-2 md:grid-cols-4 gap-5">
     <% if @products.any? %>
       <% @products.each do |product| %>
-        <div class="flex flex-col p-4 border rounded-lg ">
+
+        <% next if product.deleted_at.present? && (!user_signed_in? || !current_user.purchased?(product)) %>
+
+        <div class="flex flex-col p-4 border rounded-lg <%= 'opacity-50' if product.deleted_at.present? %>">
 
           <div class="m-3">
             <%= link_to product.title, product, class:"text-xl text-gray-900 " %>
@@ -27,8 +30,12 @@
             <div class="text-gray-900">
               <%= link_to number_to_currency(product.price), class:"text-lg" %>
             </div>
-
           </div>
+
+          <% unless product.active? %>
+            <span class="text-red-500">(No longer available)</span>
+          <% end %>
+          
           <%# Purchase Button%>
             <% if user_signed_in?%>
               <% if current_user != product.user %> 
