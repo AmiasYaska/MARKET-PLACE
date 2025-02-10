@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :purchases 
   has_many :purchased_products, through: :purchases, source: :product
 
+  def purchased_products
+    Product.with_deleted.joins(:purchases).where( purchases: {user_id: id})
+  end
+
   def purchased?(product)
     purchased_products.include?(product)
   end
