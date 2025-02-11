@@ -38,7 +38,7 @@ export default class extends Controller {
     selectResult(event) {
         this.inputTarget.value = event.target.textContent
         this.resultsTarget.innerHTML = ""
-        this.element.requestSubmit()
+        this.inputTarget.closest("form").requestSubmit()
     }
 
 
