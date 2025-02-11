@@ -17,4 +17,11 @@ class Product < ApplicationRecord
     deleted_at.nil?
   end
 
+  def self.search(query)
+    where(
+      "title ILIKE :query OR description ILIKE :query OR category ILIKE :query",
+      query:"%#{sanitize_sql_like(query)}%"
+    )
+  end
+
 end
