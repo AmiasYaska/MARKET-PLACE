@@ -4,10 +4,19 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.active.includes(:user, :purchases).all
-    if user_signed_in?
-    @products = @products.reject{ |product| product.user == current_user }   
+    if params[:search].present?
+      @products = Product.search(params[:search]) 
+    else
+      @products = Product.active.includes(:user, :purchases).all
+      if user_signed_in?
+        @products = @products.reject{ |product| product.user == current_user }   
+      end
     end
+  end
+
+  def autocomplete
+    suggestions = Product.autocomplete_search(params[:query])
+    render json: suggestions
   end
 
   def my_products
