@@ -4,8 +4,9 @@ Rails.application.routes.draw do
       get :my_products
     end
 
-    get :autocomplete, on: :collection
     get :search, on: :collection
+    get :autocomplete, on: :collection
+
   end
   resource :profile, only: [:edit, :update]
   resources :purchases, only: [ :create ]

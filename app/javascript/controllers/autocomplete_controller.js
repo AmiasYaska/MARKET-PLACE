@@ -21,7 +21,7 @@ export default class extends Controller {
         }
 
         try {
-            const response = await fetch(`/videos/autocomplete?query=${encodeURIComponent(query)}`)
+            const response = await fetch(`/products/autocomplete?query=${encodeURIComponent(query)}`)
             const results = await response.json()
             this.displayResults(results)
         } catch(error) {
