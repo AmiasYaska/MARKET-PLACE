@@ -26,6 +26,5 @@ class Product < ApplicationRecord
 
   def self.autocomplete_search(query)
     where("title ILIKE ?", "%#{sanitize_sql_like(query)}%").pluck(:title).uniq.first(5)
-    
-
+  end
 end
